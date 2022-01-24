@@ -1,9 +1,7 @@
 import {
-  EventEmitterListener,
   EmitterSubscription as EventEmitterSubscription,
   EventEmitter as WeaklyTypedEventEmitterInstance,
 } from 'react-native'
-import WeaklyTypedEventEmitter from 'react-native/Libraries/vendor/emitter/EventEmitter'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ListenerType<T> = [T] extends [(...args: infer U) => any]
@@ -45,8 +43,7 @@ export interface EventEmitterInstance<TEvents>
 }
 
 export type EventEmitter<TEvents> = EventEmitterInstance<TEvents>
-export type EventEmitterListener = EventEmitterListener
 
-export const EventEmitter = (WeaklyTypedEventEmitter as unknown) as {
+export const EventEmitter = (WeaklyTypedEventEmitterInstance as unknown) as {
   new <TEvents>(): EventEmitterInstance<TEvents>
 }
